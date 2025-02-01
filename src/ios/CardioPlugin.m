@@ -36,6 +36,7 @@ typedef enum {
         CardIOPaymentViewController* paymentVC = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
         
         paymentVC.collectExpiry = YES;
+        paymentVC.scanExpiry = YES;
         paymentVC.collectCVV = NO;        
         paymentVC.collectPostalCode = NO;
         paymentVC.collectCardholderName = YES;
