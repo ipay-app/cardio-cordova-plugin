@@ -32,21 +32,18 @@ typedef enum {
             return;
         }
         
-        NSNumber* requireExpiry = [command.arguments objectAtIndex:0];
-        NSNumber* requireCvv = [command.arguments objectAtIndex:1];
-        NSNumber* requirePostalCode = [command.arguments objectAtIndex:2] ;
         
         CardIOPaymentViewController* paymentVC = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
         
-        if(requireExpiry)
-            paymentVC.collectExpiry = [requireExpiry boolValue];
-        
-        if(requireCvv)
-            paymentVC.collectCVV = [requireCvv boolValue];
-        
-        if(requirePostalCode)
-            paymentVC.collectPostalCode = [requirePostalCode boolValue];
-        
+        paymentVC.collectExpiry = YES;
+        paymentVC.collectCVV = NO;        
+        paymentVC.collectPostalCode = NO;
+        paymentVC.collectCardholderName = YES;
+        paymentVC.useCardIOLogo = YES;
+        paymentVC.hideCardIOLogo = YES;
+        // paymentVC.languageOrLocale = @"pt-BR";
+        paymentVC.guideColor = [UIColor colorWithRed:185.0/255.0 green:0.0 blue:0.0 alpha:1.0];
+
         [self.viewController presentViewController:paymentVC animated:YES completion:nil];
         
     } else {

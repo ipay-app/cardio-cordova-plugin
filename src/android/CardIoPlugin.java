@@ -74,15 +74,22 @@ public class CardIoPlugin extends CordovaPlugin {
     private boolean scanCardLogic(JSONArray args) {
         if (CardIOActivity.canReadCardWithCamera()) {
             try {
-                boolean requireExpiry = args.length() >= 1 ? args.getBoolean(0) : false;
-                boolean requireCvv = args.length() >= 2 ? args.getBoolean(1) : false;
-                boolean requirePostalCode = args.length() >= 3 ? args.getBoolean(2) : false;
 
                 Intent scanIntent = new Intent(cordova.getActivity(), CardIOActivity.class);
                 // customize these values to suit your needs.
-                scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, requireExpiry); // default: false
-                scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, requireCvv); // default: false
-                scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, requirePostalCode); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, false); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, false); // default: false
+            
+                scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CARDHOLDER_NAME, true); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_USE_CARDIO_LOGO, true); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_HIDE_CARDIO_LOGO, true); // default: false
+                
+                scanIntent.putExtra(CardIOActivity.EXTRA_SCAN_EXPIRY, true); // default: false
+                scanIntent.putExtra(CardIOActivity.EXTRA_GUIDE_COLOR, "#b90000"); // default: false
+                
+
+
                 // scanIntent.putExtra(CardIOActivity.EXTRA_SUPPRESS_MANUAL_ENTRY, true);
                 // scanIntent.putExtra(CardIOActivity.EXTRA_KEEP_APPLICATION_THEME, true);
                 observeActivityLifecycle();
